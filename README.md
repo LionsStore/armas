@@ -1,5 +1,13 @@
 # Sistema de Combate BDR (Briga de Rua Realista)
 
+## 📖 Índice
+1. [Introdução](#introdução)
+2. [Criando uma Arma Melee](#criando-uma-arma-melee)
+3. [Criando uma Arma Arremessável](#criando-uma-arma-arremessável)
+4. [Sistema de Sons](#sistema-de-sons)
+5. [Solução de Problemas](#solução-de-problemas)
+
+## Introdução
 Este é um sistema de combate corpo a corpo (melee) realista para Roblox, desenvolvido especialmente para jogos de PVP com temática apocalíptica. O sistema inclui efeitos sangrentos, dano localizado e efeitos de status realistas.
 
 ## 📋 Características
@@ -317,3 +325,235 @@ Se os sons não forem configurados, o sistema criará objetos Sound vazios que p
 - Reprodução no servidor para sincronização
 - Limpeza automática dos sons após reprodução
 - Volume e distância configuráveis por arma 
+
+## Criando uma Arma Melee
+
+### 1. Criação Básica
+1. Crie uma nova Tool no Roblox Studio
+2. Adicione um Part como Handle
+3. Configure a aparência da arma como desejar
+
+### 2. Configurações Obrigatórias
+Adicione os seguintes valores à Tool:
+
+```lua
+-- Tipo da arma (StringValue)
+local tipoArma = Instance.new("StringValue")
+tipoArma.Name = "TipoArma"
+tipoArma.Value = "melee"
+
+-- Cooldown entre ataques (NumberValue)
+local cooldown = Instance.new("NumberValue")
+cooldown.Name = "Cooldown"
+cooldown.Value = 1 -- Em segundos
+
+-- Dano do ataque normal (NumberValue)
+local danoNormal = Instance.new("NumberValue")
+danoNormal.Name = "DanoNormal"
+danoNormal.Value = 5
+
+-- Dano do ataque especial (NumberValue)
+local danoEspecial = Instance.new("NumberValue")
+danoEspecial.Name = "DanoEspecial"
+danoEspecial.Value = 8
+```
+
+### 3. Configuração das Animações
+Adicione IDs de animação para os ataques:
+
+```lua
+-- Animação de ataque normal (StringValue)
+local slashAnimation = Instance.new("StringValue")
+slashAnimation.Name = "slashAnimation"
+slashAnimation.Value = "rbxassetid://SEU_ID_DE_ANIMACAO"
+
+-- Animação de ataque especial (StringValue)
+local specialAnimation = Instance.new("StringValue")
+specialAnimation.Name = "specialAnimation"
+specialAnimation.Value = "rbxassetid://SEU_ID_DE_ANIMACAO"
+```
+
+### 4. Configuração dos Sons
+Adicione os objetos Sound necessários:
+
+```lua
+-- Som de equipar
+local sonoroEquipar = Instance.new("Sound")
+sonoroEquipar.Name = "SonoroEquipar"
+sonoroEquipar.SoundId = "rbxassetid://SEU_ID_DE_SOM"
+sonoroEquipar.Volume = 0.5
+sonoroEquipar.RollOffMaxDistance = 50
+
+-- Som de desequipar
+local sonoroDesequipar = Instance.new("Sound")
+sonoroDesequipar.Name = "SonoroDesequipar"
+sonoroDesequipar.SoundId = "rbxassetid://SEU_ID_DE_SOM"
+sonoroDesequipar.Volume = 0.5
+sonoroDesequipar.RollOffMaxDistance = 50
+
+-- Som de ataque normal
+local sonoroNormal = Instance.new("Sound")
+sonoroNormal.Name = "SonoroNormal"
+sonoroNormal.SoundId = "rbxassetid://SEU_ID_DE_SOM"
+sonoroNormal.Volume = 0.5
+sonoroNormal.RollOffMaxDistance = 50
+
+-- Som de ataque especial
+local sonoroEspecial = Instance.new("Sound")
+sonoroEspecial.Name = "SonoroEspecial"
+sonoroEspecial.SoundId = "rbxassetid://SEU_ID_DE_SOM"
+sonoroEspecial.Volume = 0.5
+sonoroEspecial.RollOffMaxDistance = 50
+
+-- Som de erro (quando não acerta nada)
+local sonoroErrouAlvo = Instance.new("Sound")
+sonoroErrouAlvo.Name = "SonoroErrouAlvo"
+sonoroErrouAlvo.SoundId = "rbxassetid://SEU_ID_DE_SOM"
+sonoroErrouAlvo.Volume = 0.5
+sonoroErrouAlvo.RollOffMaxDistance = 50
+```
+
+## Criando uma Arma Arremessável
+
+### 1. Criação Básica
+Siga os mesmos passos iniciais da arma melee, mas com algumas configurações adicionais.
+
+### 2. Configurações Obrigatórias
+```lua
+-- Tipo da arma (StringValue)
+local tipoArma = Instance.new("StringValue")
+tipoArma.Name = "TipoArma"
+tipoArma.Value = "arremessavel"
+
+-- Cooldown entre arremessos (NumberValue)
+local cooldown = Instance.new("NumberValue")
+cooldown.Name = "Cooldown"
+cooldown.Value = 1
+
+-- Dano do arremesso (NumberValue)
+local danoArremesso = Instance.new("NumberValue")
+danoArremesso.Name = "ArremessoDano"
+danoArremesso.Value = 12
+
+-- Velocidade do arremesso (NumberValue)
+local arremessoSpeed = Instance.new("NumberValue")
+arremessoSpeed.Name = "ArremessoSpeed"
+arremessoSpeed.Value = 50
+
+-- Dano do ataque especial (NumberValue)
+local danoEspecial = Instance.new("NumberValue")
+danoEspecial.Name = "DanoEspecial"
+danoEspecial.Value = 8
+```
+
+### 3. Configuração das Animações
+```lua
+-- Animação de arremesso (StringValue)
+local specialAnimation = Instance.new("StringValue")
+specialAnimation.Name = "specialAnimation"
+specialAnimation.Value = "rbxassetid://SEU_ID_DE_ANIMACAO"
+```
+
+### 4. Configuração dos Sons
+```lua
+-- Som de equipar
+local sonoroEquipar = Instance.new("Sound")
+sonoroEquipar.Name = "SonoroEquipar"
+sonoroEquipar.SoundId = "rbxassetid://SEU_ID_DE_SOM"
+sonoroEquipar.Volume = 0.5
+sonoroEquipar.RollOffMaxDistance = 50
+
+-- Som de desequipar
+local sonoroDesequipar = Instance.new("Sound")
+sonoroDesequipar.Name = "SonoroDesequipar"
+sonoroDesequipar.SoundId = "rbxassetid://SEU_ID_DE_SOM"
+sonoroDesequipar.Volume = 0.5
+sonoroDesequipar.RollOffMaxDistance = 50
+
+-- Som de arremesso
+local sonoroArremesso = Instance.new("Sound")
+sonoroArremesso.Name = "SonoroArremesso"
+sonoroArremesso.SoundId = "rbxassetid://SEU_ID_DE_SOM"
+sonoroArremesso.Volume = 0.5
+sonoroArremesso.RollOffMaxDistance = 50
+
+-- Som de impacto em personagem
+local sonoroNormal = Instance.new("Sound")
+sonoroNormal.Name = "SonoroNormal"
+sonoroNormal.SoundId = "rbxassetid://SEU_ID_DE_SOM"
+sonoroNormal.Volume = 0.5
+sonoroNormal.RollOffMaxDistance = 50
+
+-- Som de ataque especial
+local sonoroEspecial = Instance.new("Sound")
+sonoroEspecial.Name = "SonoroEspecial"
+sonoroEspecial.SoundId = "rbxassetid://SEU_ID_DE_SOM"
+sonoroEspecial.Volume = 0.5
+sonoroEspecial.RollOffMaxDistance = 50
+
+-- Som quando erra o alvo
+local sonoroErrouAlvo = Instance.new("Sound")
+sonoroErrouAlvo.Name = "SonoroErrouAlvo"
+sonoroErrouAlvo.SoundId = "rbxassetid://SEU_ID_DE_SOM"
+sonoroErrouAlvo.Volume = 0.5
+sonoroErrouAlvo.RollOffMaxDistance = 50
+```
+
+### 5. Configuração do Handle
+Para armas arremessáveis, o Handle precisa de configurações específicas:
+```lua
+local handle = tool:WaitForChild("Handle")
+handle.CanCollide = true
+handle.CustomPhysicalProperties = PhysicalProperties.new(
+    0.7,  -- Densidade
+    0.3,  -- Fricção
+    0.5,  -- Elasticidade
+    1,    -- Peso
+    1     -- Força do material
+)
+```
+
+## Controles
+- **Clique Esquerdo**: Ataque normal (melee) ou arremesso (arremessável)
+- **Tecla E**: Ataque especial
+- **ShiftLock**: Ativado automaticamente ao equipar a arma
+
+## Sistema de Sons
+O sistema inclui os seguintes sons:
+
+### Sons Comuns (Todas as Armas)
+- **SonoroEquipar**: Toca ao equipar a arma
+- **SonoroDesequipar**: Toca ao desequipar a arma
+- **SonoroErrouAlvo**: Toca quando um ataque não acerta nenhum alvo
+
+### Sons para Armas Melee
+- **SonoroNormal**: Toca quando um ataque normal acerta
+- **SonoroEspecial**: Toca quando um ataque especial acerta
+
+### Sons para Armas Arremessáveis
+- **SonoroArremesso**: Toca no momento do arremesso
+- **SonoroNormal**: Toca quando a arma arremessada atinge um personagem
+- **SonoroEspecial**: Toca quando o ataque especial acerta
+- **SonoroErrouAlvo**: Toca quando a arma atinge o ambiente
+
+## Solução de Problemas
+
+### Arma não causa dano
+- Verifique se todos os valores numéricos estão configurados
+- Confirme se o TipoArma está correto
+- Verifique se a hitbox está no tamanho adequado
+
+### Arremesso não funciona
+- Verifique se TipoArma está como "arremessavel"
+- Confirme se o Handle está configurado corretamente
+- Verifique se o contador de arremessos não excedeu o limite (3)
+
+### Sons não tocam
+- Verifique se todos os objetos Sound estão presentes
+- Confirme se os IDs dos sons são válidos
+- Verifique se o Volume e RollOffMaxDistance estão configurados
+
+### Animações não funcionam
+- Verifique se os IDs das animações são válidos
+- Confirme se os nomes dos valores de animação estão corretos
+- Verifique se as animações estão no formato R15/R6 correto 
