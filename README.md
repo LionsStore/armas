@@ -19,12 +19,11 @@ Este é um sistema de combate corpo a corpo (melee) realista para Roblox, desenv
 
 ## 🎯 Sistema de Dano
 
-### Multiplicadores de Dano por Região
-- Cabeça: 2.5x
-- Torso Superior: 1.0x
-- Torso Inferior: 1.0x
-- Braços: 0.7x
-- Pernas: 0.8x
+O sistema aplica o dano base configurado em cada arma, sem multiplicadores por região. O dano é determinado pelos seguintes valores:
+
+- **DanoNormal**: Dano do ataque primário
+- **DanoEspecial**: Dano do ataque especial
+- **ArremessoDano**: Dano do arremesso (para armas arremessáveis)
 
 ### Efeitos de Status
 - **Sangramento**: 
@@ -41,7 +40,6 @@ Este é um sistema de combate corpo a corpo (melee) realista para Roblox, desenv
 ### Dano de Arremesso
 - Dano base configurável por arma
 - Velocidade de arremesso ajustável
-- Chance de crítico em arremessos
 - Armas ficam disponíveis para coleta após o arremesso
 
 ## 🛠️ Como Criar uma Nova Arma
@@ -53,11 +51,11 @@ Este é um sistema de combate corpo a corpo (melee) realista para Roblox, desenv
 -- Configurações de Dano
 local danoNormal = Instance.new("NumberValue")
 danoNormal.Name = "DanoNormal"
-danoNormal.Value = 15  -- Dano base
+danoNormal.Value = 15  -- Dano do ataque normal
 
-local danoCritico = Instance.new("NumberValue")
-danoCritico.Name = "DanoCritico"
-danoCritico.Value = 30  -- Dano crítico
+local danoEspecial = Instance.new("NumberValue")
+danoEspecial.Name = "DanoEspecial"
+danoEspecial.Value = 25  -- Dano do ataque especial
 
 local cooldown = Instance.new("NumberValue")
 cooldown.Name = "Cooldown"
@@ -112,7 +110,7 @@ arremessoDano.Parent = tool
 
 Se não forem especificados os valores, o sistema usará:
 - DanoNormal: 10
-- DanoCritico: 20
+- DanoEspecial: 15
 - Cooldown: 1 segundo
 - StunChance: 15%
 - BleedChance: 25%
@@ -162,10 +160,10 @@ danoNormal.Name = "DanoNormal"
 danoNormal.Value = 12
 danoNormal.Parent = faca
 
-local danoCritico = Instance.new("NumberValue")
-danoCritico.Name = "DanoCritico"
-danoCritico.Value = 25
-danoCritico.Parent = faca
+local danoEspecial = Instance.new("NumberValue")
+danoEspecial.Name = "DanoEspecial"
+danoEspecial.Value = 20
+danoEspecial.Parent = faca
 
 local cooldown = Instance.new("NumberValue")
 cooldown.Name = "Cooldown"
