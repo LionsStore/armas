@@ -29,14 +29,9 @@ danoNormal.Name = "DanoNormal"
 danoNormal.Value = 10 -- Dano do ataque normal
 danoNormal.Parent = tool
 
-local danoCritico = Instance.new("NumberValue")
-danoCritico.Name = "DanoCritico"
-danoCritico.Value = 20 -- Dano crítico do ataque normal
-danoCritico.Parent = tool
-
 local danoEspecial = Instance.new("NumberValue")
 danoEspecial.Name = "DanoEspecial"
-danoEspecial.Value = 15 -- Dano do ataque especial (tecla E)
+danoEspecial.Value = 10 -- Dano do ataque especial (tecla E)
 danoEspecial.Parent = tool
 
 -- Cooldown (NumberValue)
@@ -76,11 +71,6 @@ danoNormal.Name = "DanoNormal"
 danoNormal.Value = 10 -- Dano do ataque normal quando usa tecla E
 danoNormal.Parent = tool
 
-local danoCritico = Instance.new("NumberValue")
-danoCritico.Name = "DanoCritico"
-danoCritico.Value = 20 -- Dano crítico do ataque normal quando usa tecla E
-danoCritico.Parent = tool
-
 -- Dano e velocidade do arremesso (para o clique normal)
 local arremessoSpeed = Instance.new("NumberValue")
 arremessoSpeed.Name = "ArremessoSpeed"
@@ -89,7 +79,7 @@ arremessoSpeed.Parent = tool
 
 local arremessoDano = Instance.new("NumberValue")
 arremessoDano.Name = "ArremessoDano"
-arremessoDano.Value = 25 -- Dano do arremesso
+arremessoDano.Value = 10 -- Dano do arremesso
 arremessoDano.Parent = tool
 
 -- Cooldown
@@ -114,7 +104,6 @@ specialAnim.Parent = tool
 
 ### Arma Melee
 - `DanoNormal`: Dano do ataque normal (clique)
-- `DanoCritico`: Dano crítico do ataque normal
 - `DanoEspecial`: Dano do ataque especial (tecla E)
 - `Cooldown`: Tempo entre ataques
 - `slashAnimation`: ID da animação do ataque normal
@@ -122,7 +111,6 @@ specialAnim.Parent = tool
 
 ### Arma Arremessável
 - `DanoNormal`: Dano do ataque normal (tecla E)
-- `DanoCritico`: Dano crítico do ataque normal (tecla E)
 - `ArremessoSpeed`: Velocidade do arremesso (clique normal)
 - `ArremessoDano`: Dano causado pelo arremesso (clique normal)
 - `Cooldown`: Tempo entre ataques
