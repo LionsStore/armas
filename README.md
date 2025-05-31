@@ -3,12 +3,12 @@
 ## Tipos de Armas
 
 ### 1. Arma Melee (Normal)
-- Clique normal: Ataque normal com animação de slash
-- Tecla E: Ataque especial com animação especial
+- Clique normal: Ataque normal com animação de slash (usa DanoNormal)
+- Tecla E: Ataque especial com animação especial (usa DanoEspecial)
 
 ### 2. Arma Arremessável
-- Clique normal: Arremessa a arma com animação de arremesso
-- Tecla E: Ataque normal (igual ao ataque normal de uma arma melee) com animação de slash
+- Clique normal: Arremessa a arma com animação de arremesso (usa ArremessoDano)
+- Tecla E: Ataque normal com animação de slash (usa DanoNormal)
 
 ## Como Criar uma Arma Melee
 
@@ -26,13 +26,18 @@ tipoArma.Parent = tool
 -- Dano (NumberValue)
 local danoNormal = Instance.new("NumberValue")
 danoNormal.Name = "DanoNormal"
-danoNormal.Value = 10
+danoNormal.Value = 10 -- Dano do ataque normal
 danoNormal.Parent = tool
 
 local danoCritico = Instance.new("NumberValue")
 danoCritico.Name = "DanoCritico"
-danoCritico.Value = 20
+danoCritico.Value = 20 -- Dano crítico do ataque normal
 danoCritico.Parent = tool
+
+local danoEspecial = Instance.new("NumberValue")
+danoEspecial.Name = "DanoEspecial"
+danoEspecial.Value = 15 -- Dano do ataque especial (tecla E)
+danoEspecial.Parent = tool
 
 -- Cooldown (NumberValue)
 local cooldown = Instance.new("NumberValue")
@@ -110,6 +115,7 @@ specialAnim.Parent = tool
 ### Arma Melee
 - `DanoNormal`: Dano do ataque normal (clique)
 - `DanoCritico`: Dano crítico do ataque normal
+- `DanoEspecial`: Dano do ataque especial (tecla E)
 - `Cooldown`: Tempo entre ataques
 - `slashAnimation`: ID da animação do ataque normal
 - `specialAnimation`: ID da animação do ataque especial
